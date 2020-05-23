@@ -2,6 +2,9 @@ package com.git.k8stools.torblerone.k8srolediff;
 
 import java.util.ArrayList;
 
+/**
+ * Used for formatted printing of the diff-results on the console.
+ */
 public class ConsoleDiff {
 
 	private Role[] roles;
@@ -22,6 +25,10 @@ public class ConsoleDiff {
 		this.rules.addAll(roles[1].getRules());
 	}
 
+	/**
+	 * Used for calculating apiGroup-resource combinations and matching them with the extracted Rules.
+	 * Then 
+	 */
 	public void getDiffs() {
 		fillApiGroups();
 		fillResources();
@@ -50,14 +57,14 @@ public class ConsoleDiff {
 								
 								if(roleNumber == 1){
 									if(l.verb1.contains(verb)){
-										System.out.println("Verb1 hat bereits " + verb);
+										//System.out.println("Verb1 hat bereits " + verb);
 									} else {
 										l.verb1.add(verb);
 									}
 								}
 								if(roleNumber == 2){
 									if(l.verb2.contains(verb)){
-										System.out.println("Verb2 hat bereits " + verb);
+										//System.out.println("Verb2 hat bereits " + verb);
 									} else {
 										l.verb2.add(verb);
 									}
@@ -93,7 +100,11 @@ public class ConsoleDiff {
 
 
 
-
+	/**
+	 * heart of the class, if a verb for a specific apiGroup-resource combination is given in oldRole but not in newRole, we lose
+	 * some power, therefore we output the verb combined with a "-".
+	 * Vice-versa tactic is used for "+".
+	 */
 	private void lineDiffs() {
 		for (Line l : this.lines) {
 			for (String verb1 : l.getVerb1()) {
@@ -127,6 +138,9 @@ public class ConsoleDiff {
 
 
 
+	/** 
+	 * Extracts all the 'resources' from the Roles' rules.
+	 */
 	private void fillResources() {
 		for (Rule r : rules) {
 			for (String s : r.getResources()) {
@@ -140,6 +154,9 @@ public class ConsoleDiff {
 		// System.out.println("Resources size " + this.resources.size());
 	}
 
+	/**
+	 * Extracts all the apiGroups from the Roles' rules.
+	 */
 	private void fillApiGroups() {
 		for (Rule r : rules) {
 			for (String s : r.getApiGroups()) {
@@ -150,6 +167,9 @@ public class ConsoleDiff {
 		}
 	}
 
+	/** 
+	 * public method for calling the console printing
+	 */
 	public void printDiff() {
 		getDiffs();
 	}

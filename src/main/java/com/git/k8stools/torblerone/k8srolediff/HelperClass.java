@@ -1,5 +1,9 @@
 package com.git.k8stools.torblerone.k8srolediff;
 
+/**
+ * Used for printing a small manual on using the tool.
+ * TODO: finish the HelperClass properly
+ */
 public class HelperClass {
 
 	public static void printHelp() {

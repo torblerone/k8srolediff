@@ -1,14 +1,14 @@
 package com.git.k8stools.torblerone.k8srolediff;
 
 /**
- * Hello world!
+ * Main Application starting.
  */
 public class App {
     
 
     /**
-     * Says hello to the world.
-     * @param args The arguments of the program.
+     * Starts the helper classes to extract the logical roles from the files.
+     * @param args [oldRole.yaml] [newRole.yaml]
      */
     public static void main(String[] args) {
 
@@ -29,11 +29,7 @@ public class App {
             try{
             RoleReader roleReader = new RoleReader(args[0], args[1]);
             roleReader.readRoles();
-            // roleReader.printRules();
             ConsoleDiff cDiff = new ConsoleDiff(roleReader.getRoles());
-
-            
-
 
             cDiff.printDiff();
             } catch(Exception e){

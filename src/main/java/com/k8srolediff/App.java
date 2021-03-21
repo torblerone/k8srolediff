@@ -19,7 +19,7 @@ public class App {
             }
         }
 
-        if(args.length < 2 || args.length == 0){
+        if(args.length < 2 || args.length == 0 || args.length > 2){
             System.out.println("Expected argument length: 2\tReality: " + args.length + ".");
             System.out.println("Consider checking manual by typing \"java -jar k8srolediff help\".");
             System.exit(1);

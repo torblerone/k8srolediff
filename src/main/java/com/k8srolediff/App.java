@@ -12,33 +12,30 @@ public class App {
      */
     public static void main(String[] args) {
 
-        if(args.length == 1){
-            if(args[0].contentEquals("help")){
-                HelperClass.printHelp();
-                System.exit(0);
-            }
-        }
+        switch(args.length) {
+            case 2:
+                try {
+                    RoleReader roleReader = new RoleReader(args[0], args[1]);
+                    roleReader.readRoles();
+                    ConsoleDiff cDiff = new ConsoleDiff(roleReader.getRoles());
+                    cDiff.printDiff();
+                } catch(Exception e) {
 
-        if(args.length < 2 || args.length == 0 || args.length > 2){
-            System.out.println("Expected argument length: 2\tReality: " + args.length + ".");
-            System.out.println("Consider checking manual by typing \"java -jar k8srolediff help\".");
-            System.exit(1);
-        }
-
-        if(args.length == 2){
-            try{
-            RoleReader roleReader = new RoleReader(args[0], args[1]);
-            roleReader.readRoles();
-            ConsoleDiff cDiff = new ConsoleDiff(roleReader.getRoles());
-
-            cDiff.printDiff();
-            } catch(Exception e){
-                System.err.println(e);
-                e.printStackTrace();
+                    System.err.println(e);
+                    e.printStackTrace();
+                    System.exit(1);
+                }
+                break;
+            case 1:
+                if(args[0].contentEquals("help")) {
+                    HelperClass.printHelp();
+                    System.exit(0);
+                }
+                // break; is not intended here, if argument is not "help" we want to exit with below code block.
+            default:
+                System.out.println("Expected argument length: 2\tReality: " + args.length + ".");
+                System.out.println("Consider checking manual by typing \"java -jar k8srolediff help\".");
                 System.exit(1);
-            }
-
         }
-
     }
 }

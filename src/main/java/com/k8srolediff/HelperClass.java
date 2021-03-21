@@ -1,4 +1,4 @@
-package com.git.k8stools.torblerone.k8srolediff;
+package com.k8srolediff;
 
 /**
  * Used for printing a small manual on using the tool.

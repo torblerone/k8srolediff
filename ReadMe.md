@@ -2,6 +2,7 @@
 
 *Author / Maintainer: torblerone*
 
+## TO BE REFACTORED SOON
 ## Introduction
 
 The Java tool **k8srolediff** extracts differences between two Kubernetes (*k8s*) roles by given their YAML files. This is useful if you e.g. want to look at the logical differences between an old existing Role and a new Role you just wrote. Using the tool as described below (Section *Usage*), it outputs the diff in a formatted table on the console.
